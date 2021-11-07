@@ -1,12 +1,29 @@
 class Solution{
     static int minJumps(int[] arr){
-        int count = 0;
-        for ( int i=0;i<arr.length; i= i+arr[i] ){
-            count++;
-            if ( i > arr.length ){
-                return count; 
-            }
+        // your code here
+        int n = arr.length; 
+        if (n <= 1)
+        return 0;
+ 
+        if (arr[0] == 0)
+            return -1;
+        
+        int jumps =0 ;
+        int max = 0 ;
+        int halt = 0;
+        
+        for( int i=0; i<n-1; i++ ){
+            
+            max = Math.max(arr[i] + i, max );
+            
+            if ( i == halt ){
+                halt = max ;
+                jumps++;
+            }    
         }
-        return count ;
+        if ( halt >= n-1) return jumps;
+        return -1 ;
+        
+     
     }
 }
